@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html ng-app="myapp">
+	<head>
+		<meta charset="UTF-8">
+		<title>Angularjs仿淘宝</title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+		
+		<style type="text/css">
+		.container{
+			margin-bottom: 20px;
+		}
+			.thumbnail{
+				height:440px;
+			}
+			.price{
+				font-size: 19px;
+				color:rgb(234,103,0);
+				font-weight: bolder;
+			}
+			.baoyou{
+				background: rgb(234,103,0);
+				color:white;
+				font-size: 12px;
+				padding:1px 3px;
+				margin:-5px 0 0 3px;
+				position: absolute;
+			}
+			.alink{
+				color:black;
+			}
+			.alink:hover{
+				color:black;
+				cursor: pointer;
+			}
+			a:hover{
+				cursor: pointer;
+			}
+			.alink span{
+				color:rgb(234,103,0);
+			}
+			.footer{
+				position: absolute;
+				bottom: 16px;
+			}
+			.footer a{
+				color:rgb(234,103,0);
+			}
+			
+		</style>
+	</head>
+	<body  ng-controller="mycon">
+		<div class="row">
+			<div class="container">
+				<div class="col-md-8 col-md-push-2">
+				<div class="form-group">
+					<div class="input-group">
+						<input type="text" class='form-control' placeholder="请输入搜索内容" ng-model="value"/>
+						<span class="input-group-btn">
+							<button class="btn btn-danger" ng-click="search=value">搜索</button>
+						</span>
+					</div>
+				</div>
+				</div><!--end of col-->
+				<div class="col-md-9 col-md-offset-2">
+					<div class="btn-group">
+						<button class="btn btn-default active" ng-click="order='user_id'">综合排序</button>
+						<button class="btn btn-default" ng-click="order='-num'">销量从高到底</button>
+						<button class="btn btn-default" ng-click="order='num'">销量从低到高</button>
+						<button class="btn btn-default" ng-click="order='-view_price'">价格从高到低</button>
+						<button class="btn btn-default" ng-click="order='view_price'">价格从低到高</button>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="container">
+				<div class="col-md-4 col-lg-3" ng-repeat="d in arr | filter:search | orderBy:order | limitTo:4:index">
+					<div class="thumbnail">
+						<img ng-src="{{d.pic_url}}" alt="" class="img-responsive"/>
+						<div class="caption">
+							<p>
+								<span class="price"><label class="sr-only">价格</label>{{d.view_price | currency:'¥':2}}</span>
+								<span class="baoyou" ng-if="d.view_fee==0">包邮</span>
+								<span class="pull-right"><label class="sr-only">购买人数</label>{{d.view_sales}}</span>
+							</p>
+							<a class="alink" ng-bind-html="d.title"><label class="sr-only">标题</label></a>
+							<p class="footer">
+								<a href="#"><span class="glyphicon glyphicon-align-justify"></span>{{d.nick}}</a>
+								<span><label class="sr-only">店铺地址</label>{{d.item_loc}}</span>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>
+			<div class="container">
+			<div class="row">
+				<div class="col-md-4 pull-right">
+					<ul class="pagination">
+						<li><a href="" ng-click="index = index-4>0?index-4 : 0">&laquo;</a></li>
+						<li ng-repeat="d in nuuu track by $index"><a href="" ng-click="change($event,$index)">{{$index+1}}</a></li>
+						<!--存在bug-->
+						<li><a href="" ng-click="index=index+4>d.length-1?index+4 : 8">&raquo;</a></li>
+					</ul>
+				</div>
+			</div>
+			</div>
+		</div>
+		
+		<script src="js/angular.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="angular-sanitize.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
+		
+		<script type="text/javascript">
+			var app=angular.module('myapp',['ngSanitize']);
+				//使用ajax获取data.json
+//			app.controller('mycon',['$scope',function($scope){	
+//			$scope.arr=[];
+//	
+//			$.ajax({
+//				type:"get",
+//				url:"data.json",
+//				async:true,
+//				data:'json',
+//				success:function(data){
+//						//$apply触发视图更新
+//						$scope.$apply(function(){
+//							$scope.arr=data;
+//						})
+//				},
+//				error:function(error){
+//					alert('ajax请求错误');
+//				}
+//			});
+//			}]);
+
+			app.controller('mycon',['$scope','$http',function($scope,$http){
+				$scope.arr=[];
+				$scope.order='';
+				$scope.search='';
+				$scope.index=0;//显示的下标
+				
+				$scope.nuuu=[];
+				$http.get('data.json').then(function(data){
+					$scope.arr=data.data;
+					$scope.nuuu.length=Math.ceil($scope.arr.length/4);
+					$.each($scope.arr, function(i) {
+						$scope.arr[i]['num']=parseInt($scope.arr[i]['view_sales']);
+					});
+					console.log($scope.arr);
+				});
+				$scope.change=function(e,index){
+					e.preventDefault();
+					$scope.index=(index)*4;
+				}
+					
+			}]);
+			
+			$(function(){
+				$('.btn-group button:first-child').click();
+				$('.btn-group').on('click','button',function(){
+					$(this).addClass('active').siblings().removeClass('active');
+				});
+				
+				$('.pagination').on('click','li',function(){
+					console.log($(this).index());
+				});
+			});
+			
+			
+			
+		</script>
+	</body>
+</html>

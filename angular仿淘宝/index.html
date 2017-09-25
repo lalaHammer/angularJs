@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html ng-app="app">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<style>
+			.row:first-of-type{margin-bottom: 10px;}
+			a{
+				text-decoration: none !important;
+			}
+			.text{border:2px solid #D9534F;}
+			.text:focus{
+				border:2px solid #D9534F;
+			}
+			.my-col{
+				max-width: 400px;
+				margin: auto;
+			}
+			.money{
+				font-size: 18px;			
+				font-weight: bold;
+				color: #EF6900;
+			}
+			.baoyou{
+				background: #EF6900;
+				color: #ffffff;
+				padding: 2px 5px;
+				font-size: 12px;
+				vertical-align: top;
+				margin: 0px 0px 0px -2px;
+			}
+			.title-hover:hover{
+				text-decoration: underline;
+			}
+			.title-hover span{
+				color: #EF6900;
+			}
+			.my-icon{
+				color: #FF6900;
+			}
+			.my-nick{
+				text-decoration: underline;
+				color: gray;
+			}
+			.my-addr{
+				color: #666;
+			}
+			td{
+				text-align: center;
+				padding: 5px 0px;
+			}
+			td.active{
+				color: #EF6900;
+			}
+		</style>
+	</head>
+	<body ng-controller="myController">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-8 col-xs-offset-2">
+					<div class="input-group">
+						<input type="search" placeholder="请输入搜索内容" class="form-control text" ng-model="search"/>
+						<div class="input-group-btn">
+							<button type="button" class="btn btn-danger">搜索</button>
+						</div>
+					</div>	
+				</div>
+			</div>		
+			<div class="row">
+				<div class="col-xs-9">
+					<table class="table table-bordered">
+						<tr>
+							<td ng-class="{'active':isActives[0]}" ng-click="sort('user_id',0)">综合排序</td>
+							<td ng-class="{'active':isActives[1]}" ng-click="sort('view_sales',1,true)">销量从高到低</td>
+							<td ng-class="{'active':isActives[2]}" ng-click="sort('view_sales',2,false)">销量从低到高</td>
+							<td ng-class="{'active':isActives[3]}" ng-click="sort('view_price',3,true)">价格从高到低</td>
+							<td ng-class="{'active':isActives[4]}" ng-click="sort('view_price',4,false)">价格从低到高</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-3 col-md-4 col-sm-6 my-col" ng-repeat="d in arr |filter:search | orderBy:what:flag">
+					<a ng-href="{{d.detail_url}}" class="thumbnail">
+						<img ng-src="{{d.pic_url}}" class="img-responsive"/>
+						<div class="caption">
+							<p>
+								<span ng-bind="d.view_price|currency:'￥'" class="money"></span>
+								<span ng-if="d.view_fee<=0" class="baoyou">包邮</span>
+								<span ng-bind="d.view_sales" class="pull-right"></span>
+							</p>
+						<!--	<h4 ng-bind="d.raw_title"></h4>-->
+							<p ng-bind-html="d.title" class="title-hover"></p>
+							<p>
+								<span class="glyphicon glyphicon-align-justify my-icon"></span>
+								<span ng-bind="d.nick" class="my-nick"></span>
+								<span ng-bind="d.item_loc" class="pull-right my-addr"></span>
+							</p>
+						</div>
+					</a>
+				</div>
+			</div>
+			
+		</div>
+		
+		<script type="text/javascript" src="angular.min.js" ></script>
+		<script type="text/javascript" src="angular-sanitize.min.js" ></script>
+		<script src="jquery"></script>
+		<script>
+			var app=angular.module('app',['ngSanitize']);
+			app.controller('myController',['$scope','$http',function($scope,$http){
+				$scope.arr=[];
+			
+				
+				$http.get('data.json').success(function(data){
+					$scope.arr=data;
+					$scope.what='';
+					$scope.isActives=[true,false,false,false,false];
+					
+					$scope.flag=false;
+					
+					$scope.preIndex=$scope.nowIndex=0;
+					$scope.sort=function(what,index,flag){
+						$scope.what=what;
+						if(flag){
+							$scope.flag=flag;
+						}else{
+							$scope.flag=false;
+						}
+						$scope.nowIndex=index;
+						$scope.isActives[this.nowIndex]=true;
+						$scope.isActives[this.preIndex]=false;
+						$scope.preIndex=$scope.nowIndex;
+					}
+				});			
+			}]);			
+		</script>
+	</body>
+</html>
