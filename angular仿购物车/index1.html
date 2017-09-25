@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html ng-app = "myApp">
+	<head>
+		<meta charset="utf-8" />
+		
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+		<style type="text/css">
+			*{margin: 0;padding: 0;}
+			a{text-decoration: none;}
+			li{list-style: none;}
+			.oHeader{background:lightgray;height: 50px;text-align: center;line-height: 50px;}
+		</style>
+	</head>
+	<body ng-controller="myController">
+		<div class="container">
+			<div class="row">
+				<div class="clo-md-12 pull-left">
+					<h1><a href="#">全部商品</a></h1>
+				</div>
+			</div>
+			<div class="row oHeader">
+				<div class="col-md-1">
+					<input type="checkbox" ng-model="all" />  全选
+				</div>
+				<div class="col-md-5">
+					商品
+				</div>
+				<div class="col-md-1">
+					单价
+				</div>
+				<div class="col-md-2">
+					数量
+				</div>
+				<div class="col-md-1">
+					小计
+				</div>
+				<div class="col-md-2">
+					操作
+				</div>
+			</div>
+		
+			<div class="row" ng-repeat="d in goodsList">
+				<div class="col-md-1">
+					<input type="checkbox" ng-checked="all" />
+				</div>
+				<div class="col-md-5">
+					<div class="col-sm-9">
+						<img ng-src='{{d.imgs}}' class="img-responsive pull-left"/>
+						<a href="#">{{d.name}}</a>
+					</div>
+					<div class="col-sm-3">
+						{{d.color}}
+					</div>
+				</div>
+				<div class="col-md-1">
+					¥{{d.price}}
+				</div>
+				<div class="col-md-2">
+					<div class="input-group">
+						<span class="input-group-btn"><button class="btn btn-default" ng-click="reduce($index)"><span class="reduce" >-</span></button></span>
+						<input type="text"class="form-control" value="{{d.num}}" ng-model="d.num"/>
+						<span class="input-group-btn"><button class="btn btn-default" id="add" ng-click="add($index)"><span class="add">+</span></button></span>
+					</div>
+				</div>
+				<div class="col-md-1">
+					<span class="total"><strong>¥{{d.total}}</strong></span>
+				</div>
+				<div class="col-md-2">
+					<ul class="operation">
+						<li class="delete" ng-click="remove($index)">删除</li>
+						<li>移到我的关注</li>
+						<li>加到我的关注</li>
+					</ul>
+				</div>
+				
+				
+				
+			</div>
+			
+			<div class="container">
+				<div class="row oHeader">
+				<div class="col-md-1">
+					<input type="checkbox" ng-model="all" />  全选
+				</div>
+				<div class="col-md-5">
+					商品
+				</div>
+				<div class="col-md-1">
+					单价
+				</div>
+				<div class="col-md-2">
+					数量
+				</div>
+				<div class="col-md-1">
+					总计:
+					<strong>{{sumTotal()}}</strong>
+				</div>
+				<div class="col-md-2">
+					结算
+				</div>
+			</div>
+			</div>
+			
+		</div>
+		<script src="js/jquery-1.11.1.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/angular.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var myApp = angular.module('myApp',[]);
+			myApp.controller('myController',function($scope){
+				//商品信息
+				$scope.goodsList=[{
+					id:0,
+					imgs:"img/1.jpg",
+					name:'果绿后背钩花蝴蝶镂空长袖针织衫开衫小披肩韩国气质薄2010秋新',
+					price:2.00,
+					color:"果绿色",
+					num:1,
+					total:2.00
+				},
+				{
+					id:1,
+					imgs:"img/1.jpg",
+					name:'果绿后背钩花蝴蝶镂空长袖针织衫开衫小披肩韩国气质薄2010秋新',
+					price:3.00,
+					color:"果绿色",
+					num:1,
+					total:3.00
+				}
+				]
+				
+				//总计
+				$scope.sumTotal=0;//合计
+				$scope.$watch('goodsList',function(newValue,oldValue){
+					for(var i in newValue){
+						var total=newValue[i].num*newValue[i].price;//数量*单价
+						$scope.goodsList[i].total=total.toFixed(2);//将新的total赋值到数组中,保留两位
+						//$scope.sumTotal=total;
+					}	
+					
+				},true);
+				
+				$scope.sumTotal = function(){
+					var total = 0;
+					angular.forEach($scope.goodsList,function(d){
+						total += d.num * d.price;
+						//console.log(total)
+						
+					});
+					console.log($scope.a)
+					return total;
+				}
+				
+				
+				//加
+				$scope.add=function(index){
+					($scope.goodsList[index].num)++;
+				}
+				//减
+				$scope.reduce=function(index){
+					if($scope.goodsList[index].num!=1)
+					{
+						($scope.goodsList[index].num)--;
+					}else
+					{$scope.goodsList[index].num = 1;}
+				}
+				//删除
+				$scope.remove = function(index){
+					$scope.goodsList.splice(index,1);
+				}
+				
+			});
+		</script>
+	</body>
+</html>

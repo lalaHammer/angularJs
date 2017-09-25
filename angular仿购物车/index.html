@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html ng-app='myapp'>
+	<head>
+		<meta charset="utf-8" />
+		<title>angularjs仿购物车</title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+		
+		<style type="text/css">
+			.media-left img{
+				width:70px;
+				height:70px;
+				display: inline-block;
+			}
+			
+			.media-body{
+				width: 300px;
+				word-break: break-word;
+				height: 20px;
+				overflow: hidden;
+			}
+			.border{
+				border:1px solid #ccc;
+				height: 100px;
+				padding-top:10px ;
+			}
+			.input-group input{
+				width: ;
+			}
+		</style>
+	</head>
+	<body ng-controller="mycon">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-1">
+					<label>
+					<input type="checkbox" ng-click="flag=!flag" checked/>全选</label>
+				</div>
+				<div class="col-md-6">
+					商品
+				</div>
+				<div class="col-md-1">单价</div>
+				<div class="col-md-2">数量</div>
+				<div class="col-md-1">小计</div>
+				<div class="col-md-1">操作</div>
+			</div>
+			<div class="row border" ng-repeat="d in arr" >
+				<div class="col-md-1"><input type="checkbox" ng-checked='flag' ng-model='d.isChecked' /></div>
+				<!--商品信息-->
+				<div class="col-md-6">
+					<div class="media">
+						<div class="media-left">
+							<img ng-src="{{d.pic_url}}"/>
+						</div>
+						<div class="media-body" ng-bind="d.title"></div>
+					</div>
+				</div>
+				<!--单价-->
+				<div class="col-md-1" ng-bind="d.view_price | currency:'¥':2"></div>
+				<!--数量-->
+				<div class="col-md-2">
+					<div class="input-group">
+						<span class="input-group-btn"><button class="btn btn-default" ng-click='sub($index)'>-</button></span>
+						<input type="text" class="form-control"  ng-model='d.num'/>
+						<span class="input-group-btn"><button class="btn btn-default" ng-click='add($index)'>+</button></span>
+						
+					</div>
+				</div>
+				<!--小计-->
+				<div class="col-md-1" ng-bind="d.total | currency:'¥':2"></div>
+				<!--操作-->
+				<div class="col-md-1"><a href="#" ng-click="removeDiv($index,$event)">删除</a></div>
+			</div>
+			<div class="row total">
+				<div class="col-md-1 pull-right">{{totalPrice() | currency:'¥':2}}</div>
+			</div>
+			
+		</div>
+		<script src="js/angular.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<script type="text/javascript">
+			var app=angular.module('myapp',[]);
+			
+				app.controller('mycon',['$scope','$http','$filter',function($scope,$http,$filter){
+				$scope.arr=[];
+				$http.get('data.json').then(function(data){
+					$scope.arr=data.data;
+					$scope.flag=true;//全选
+					//-
+					$scope.sub=function(i){
+						if($scope.arr[i]['num']>1 ){
+							$scope.arr[i]['num'] --;
+							$scope.arr[i]['total']=$scope.arr[i]['num']*$scope.arr[i]['view_price'];
+						}
+					};
+					
+					//+
+					$scope.add=function(i){
+						$scope.arr[i]['num'] ++;
+						$scope.arr[i]['total']=$scope.arr[i]['num']*$scope.arr[i]['view_price'];
+					}
+					
+					$scope.$watch('arr',function(newArr,old){
+						$.each(newArr, function(i) {
+							$scope.arr[i]['total']=newArr[i].num*newArr[i].view_price;
+						});
+					},true);
+					
+					//计算总价
+					$scope.totalPrice=function(){
+						var sum=0;
+						
+							$.each($scope.arr, function(i,item) {
+								if(item.isChecked){
+								sum += item['total'];
+								}
+							});
+							return sum;
+						
+					};
+					
+					
+					//移除商品
+					$scope.removeDiv=function(i,e){
+						e.preventDefault();
+						$scope.arr.splice(i,1);
+					};
+				});
+			}]);
+		</script>
+	</body>
+</html>
