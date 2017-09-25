@@ -1,0 +1,38 @@
+.container{
+	position: absolute;
+	top:24%;
+	left:50%;
+	/*margin-top:-300px;*/
+	margin-left: -500px;
+}
+.row{
+	margin:20px;
+}
+.btn{
+	background: rgb(51,133,215);
+	width:100px;
+}
+.btn:hover{
+	background: rgb(60,140,215);
+}
+*{
+	border-radius: 0 !important;
+}
+ul{
+	list-style: none;
+	padding:0;
+}
+#search-result{
+	border:1px solid #ccc;
+	width:604px;
+}
+#search-result li{
+	padding:5px;
+}
+#search-result li:hover{
+	background: rgb(240,240,240);
+	cursor: default;
+}
+.col-md-7{
+	margin-left:60px;
+}
