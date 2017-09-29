@@ -1,0 +1,16 @@
+<link rel="stylesheet" type="text/css" href="css/yywd.css"/>
+<div id="search">
+	<img src="img/dingwei.png" alt="" />
+	<input type="text" placeholder="请输入网点地址或名称" class="search_val" ng-model="search"/>
+	<button class="search_btn" ng-click="search_btn()">搜索</button>
+</div>
+<div id="msg" ng-repeat='d in arr'>
+	<a href="angularjs平安银行/index.html#/wdxq/{{d.branch_id}}"><img ng-src="{{d.branch_logo}}" class="left" /></a>
+	<div class="context">
+		<a href="/angularjs平安银行/index.html#/wdxq/{{d.branch_id}}"><h3>{{d.branch_name}}</h3></a>
+		<p>{{d.branch_type}}</p>
+		<p>{{d.branch_addr}}</p>
+	</div>
+</div>
+<div class="more" ng-click="showMore()" ng-show="moreFlag">加载更多</div>
+<div class="localPosi" getgeo></div>

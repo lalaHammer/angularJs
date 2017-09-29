@@ -1,0 +1,25 @@
+//定义指令
+define(['app','jquery'],function(app,$){
+	app.directive('getgeo',['getGeoFactory',function(getGeoFactory){
+		return {
+			restrict:'EA',
+			templateUrl:'view/geo.html',
+			replace:true,
+			link:function($scope,el,attr){
+				getGeoFactory.geo(function(res){
+					console.log(el);
+					$(el).find('span').html(res.formatted_address);
+				});
+				$(el).on('click','.ref',function(){
+					getGeoFactory.geo(function(res){
+						console.log(res);
+						$(el).find('span').html('正在重新定位,请稍后...');
+						setTimeout(function(){
+							$(el).find('span').html(res.formatted_address);
+						},1000);
+					});
+				});
+			}
+	};
+	}]);
+});

@@ -1,0 +1,38 @@
+<link rel="stylesheet" href="css/jrcs.css" />
+<ul class="title_btn">
+	<li class="active" ng-click="show_C1()">理财产品</li>
+	<li ng-click="show_C2()">基金超市</li>
+</ul>
+<ul ng-repeat="d in arr" class="lc_msg" ng-show="show1">
+	<li>
+		<div class="box"></div>
+		<p><a href="#/shxq/jrcs/cpxq">{{d.financial_name}}</a></p>
+		<span>{{d.subscribe}}</span><font>起购</font>
+	</li>
+	<li class="shouyi">
+		<div>
+			<p>{{d.profit[0].value}}</p>
+			<span>{{d.profit[0].key}}</span>
+		</div>
+		<div>
+			<p>{{d.alloted[0].value}}</p>
+			<span>{{d.alloted[0].key}}</span>
+		</div>
+	</li>
+</ul>
+<ul ng-repeat="d in arr" class="lc_msg" ng-show="show2">
+	<li >
+		<a href="#/shxq/jrcs/jjxq">{{d.fund_name}}</a>
+		<span id="type">{{d.fund_type}}</span>
+	</li>
+	<li class="shouyi">
+		<div>
+			<p>{{d.net_value}}</p>
+			<span>预计年化收益率%</span>
+		</div>
+		<div>
+			<p>{{d.risk_level}}</p>
+			<span>风险评级</span>
+		</div>
+	</li>
+</ul>

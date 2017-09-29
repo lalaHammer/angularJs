@@ -1,0 +1,77 @@
+.title{
+	border-bottom: 1px solid #ccc;
+	padding:10px;
+	line-height: 20px;
+}
+.title div{
+	width:40px;
+	height: 40px;
+	border: 1px solid #ccc;
+	float: left;
+	margin-right:10px;
+}
+.title>span{
+	color:rgb(255,112,88);
+}
+.title>font{
+	color:#6C6C6C;
+}
+.title>span,
+.title>font{
+	font-size: 14px;
+}
+.yuqi{
+	overflow: hidden;
+	border-bottom: 1px solid #ccc;
+}
+.yuqi>div{
+	width:47%;
+	float: left;
+	height:60px;
+	text-align: center;
+	padding: 2px;
+}
+.yuqi>div:nth-child(1){
+	border-right:1px solid #ccc ;
+	margin-right:4px;
+}
+.yuqi p{
+	font-size:14px;
+	height:30px;
+	margin-top:6px;
+	color:#666;
+}
+.yuqi span{
+	color:rgb(255,112,88);
+	font-size:18px;
+}
+
+/*产品详情列表*/
+.msg-list{
+	padding:10px;
+	color:#666;
+	width:93%;
+}
+.msg-list li{
+	height:30px;
+	line-height: 30px;
+	border-bottom: 1px solid #ccc;
+	font-size:13px;
+}
+.msg-list li>span{
+	float: right;
+	
+}
+.buy_btn{
+	width:96%;
+	font-size:16px;
+	color: white;
+	position: absolute;
+	left:50%;
+	bottom: 6px;
+	transform: translate(-50%);
+	background: rgb(255,112,88);
+	border:1px solid rgb(255,112,88);
+	border-radius: 4px;
+}
+

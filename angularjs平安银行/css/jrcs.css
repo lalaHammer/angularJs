@@ -1,0 +1,85 @@
+.title_btn{
+	width:80%;
+	margin:10px auto;
+	border:1px solid #ccc;
+	border-radius: 10px;
+	overflow: hidden;
+}
+.title_btn li{
+	width:49%;
+	float: left;
+	font-size:16px;
+	line-height: 26px;
+	height:26px;
+	text-align: center;
+	display: inline-block;
+}
+.title_btn li:nth-child(1){
+	border-right:1px solid #ccc;
+}
+.lc_msg {
+	margin-bottom:10px;
+	border:1px solid #ccc;
+	border-width: 1px 0;
+	overflow: hidden;
+}
+.lc_msg li{
+	padding:6px;
+	line-height: 20px;
+	
+}
+.lc_msg .box{
+	width:40px;
+	height:40px;
+	border:1px solid #666;
+	float: left;
+	margin-right:10px;
+}
+.lc_msg li>span{
+	color:rgb(254,113,88);
+}
+.lc_msg li>font,
+.shouyi div span{
+	color: #6c6c6c;
+}
+.lc_msg li>span,
+.lc_msg li>font,
+.shouyi div span{
+	font-size:14px;
+}
+.shouyi {
+	width:80%;
+	border-top:1px solid #ccc;
+	float: right;
+} 
+.shouyi div{
+	width:40%;
+	float: left;
+	text-align: center;
+	
+}
+.shouyi div:nth-child(1){
+	border-right:1px solid #ccc;
+	padding:0 10px;
+	margin-right:10px;
+}
+.shouyi div p{
+	font-size: 18px;
+	color:rgb(254,113,88);
+}
+
+
+.active{
+	color:rgb(254,113,88);
+}
+
+#type{
+	float: right;
+	background: rgb(254,113,88);;
+	color:white;
+	font-size: 12px;
+	margin-right:20px;
+	padding:1px 3px;
+	border-radius:4px;
+}
+

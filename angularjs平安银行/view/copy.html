@@ -1,0 +1,28 @@
+<div>
+	<link rel="stylesheet" type="text/css" href="css/copy.css"/>
+<ul>
+		<li>
+		<img ng-src="{{arr[typeName+'_logo']}}" alt="" class="left"/>
+		<p class="title">{{arr[typeName+'_name']}}</p>
+		<!--<img src="img/iconfont-xingxing.png" ng-repeat='d in arr2' class="img-resposive start"/>
+		<p>{{arr.branch_type}}</p>-->
+		<div ng-transclude></div>
+	</li>
+	<li>
+		<div class="img-left"><img src="img/f.png" alt=""  /></div>
+		<span>{{arr[typeName+'_addr']}}</span>
+		<div class="down_right"><img src="img/xiala.png" alt="" /></div>
+	</li>
+	<li>
+		<div class="img-left"><img src="img/tel.png" alt=""  /></div>
+		<span ng-click="change()">{{arr[typeName+'_tel']}}</span>
+		<div class="down_right"><img src="img/xiala.png" alt="" /></div>
+	</li>
+</ul>
+<div id="telBox" ng-show="telFlag" ng-click="change()">
+	<div>
+		<p class="title">联系电话</p>
+		<p class="telNum" ng-repeat="d in telNum" ng-bind="d"></p>
+	</div>
+</div>
+</div>

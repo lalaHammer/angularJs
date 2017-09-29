@@ -1,0 +1,30 @@
+<!--网点详情页面-->
+<link rel="stylesheet" type="text/css" href="css/wdxq.css" />
+<div class="wd_ul">
+	<ul>
+		<li arr="arr" type-name='branch' copy tel-num='telArr'>
+			<img src="img/iconfont-xingxing.png" class="img-resposive start" />
+			<img src="img/iconfont-xingxing.png" class="img-resposive start" />
+			<img src="img/iconfont-xingxing.png" class="img-resposive start" />
+			<p>{{arr.branch_type}}</p>
+		</li>
+	</ul>
+	<ul>
+		<li>
+			<h4>网点信息</h4></li>
+	</ul>
+	<ul class="merchant">
+		<li>
+			<h4>附近优惠</h4></li>
+		<li ng-repeat="d in arr.shops.items">
+			<div>
+				<a ng-href="#/wdxq/{{arr.branch_id}}/shxq/{{d.shop_id}}"><img ng-src="{{d.shop_logo}}" alt="" /></a>
+			</div>
+			<h3><a ng-href="#/wdxq/{{arr.branch_id}}/shxq/{{d.shop_id}}">{{d.shop_name}}</a></h3>
+			<p>{{d.shop_preferential}}</p>
+			<p><span><img src="img/iconfont-circularsearch.png"/>{{d.view_count}}</span>
+				<span><img src="img/love.png"/>{{d.favorite_count}}</span>
+				<span><img src="img/iconfont-qian.png" alt="" />{{d.capita_consumption}}元/人</span></p>
+		</li>
+	</ul>
+</div>

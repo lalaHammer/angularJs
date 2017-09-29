@@ -1,0 +1,110 @@
+
+.wd_ul{
+	width: 93%;
+}
+.wd_ul li{
+	border:1px solid #ccc;
+	padding:10px;
+	overflow: hidden;
+}
+.wd_ul .left{
+	width:26%;
+	height:80px;
+	float: left;
+	padding-right:10px;
+
+}
+.wd_ul li .title{
+	float: left;
+	width:70%;
+	font-size:20px;
+	font-weight: bolder;
+	margin-bottom: 10px;
+	color:#000;
+}
+.start{
+	width:20px;
+	height:20px;
+}
+.wd_ul p{
+	font-size: 14px;
+	color:#666;
+	margin-top:10px;
+}
+.img-left{
+	width:20px;
+	float: left;
+	margin-right:4px;
+	padding-top: 10px;
+}
+.img-left img{
+	width:20px;
+	height:20px;
+}
+.wd_ul li span{
+	width:76%;
+	float: left;
+	color:#666;
+	line-height: 20px;
+	font-size:14px;
+	margin:0 10px;
+}
+.down_right{
+	padding-top:16px;
+}
+.down_right img{
+	width:20px;
+	height:15px;
+}
+ul{
+	margin-bottom: 10px;
+}
+ul>li>h4{
+	color:#666;
+}
+
+.merchant li div{
+	width:80px;
+	height:80px;
+	border:1px solid #ccc;
+	float: left;
+	
+	margin-right:10px;
+}
+.merchant li p,
+.title{
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.merchant li p{
+	float: left;
+	width:60%;
+	font-size:16px;
+	color:rgb(248,115,82);
+}
+.merchant li span{
+	float: left;
+	width:14%;
+}
+.merchant span>img{
+	width:16px;
+	height:16px;
+}
+.merchant a>img{
+	width:80px;
+	height:80px;
+}
+#title_img{
+	float: left;
+	width:70%;
+}
+#title_img span{
+	width:50px;
+	margin:0;
+}
+#title_img img{
+	width:18px;
+	height:18px;
+	float: left;
+}

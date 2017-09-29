@@ -1,0 +1,64 @@
+<link rel="stylesheet" href="css/cpxq.css" />
+	<div class="title">
+	<div></div>
+	<p>{{arr.financial_name}}</p>
+	<span>{{arr.subscribe_min}}</span>
+	<font>起购</font>
+</div>
+<ul>
+	<li class="yuqi">
+		<div>
+			<p>预期年化收益率(%)</p>
+			<span>3.4675</span>
+		</div>
+		<div>
+			<p>建议持有期限</p>
+			<span>1447</span>
+		</div>
+	</li>
+	<li>
+		<ul class="msg-list">
+			<li>
+				产品币种
+				<span>{{arr.currency_type}}</span>
+			</li>
+			<li>
+				风险评级
+				<span>{{arrrisk_level}}</span>
+			</li>
+			<li>
+				销售期
+				<span>{{arr.sales_time}}</span>
+			</li>
+			<li>
+				理财计息期
+				<span>{{arr.interest_time}}</span>
+			</li>
+			<li>
+				认购上限
+				<span>{{arr.subscribe_max}}</span>
+			</li>
+			<li>
+				递增金额
+				<span>{{arr.increase_amount}}</span>
+			</li>
+			<li>
+				产品类型
+				<span>{{arr.financial_type}}</span>
+			</li>
+			<li>
+				收益率附加说明
+				<span>{{arr.profit_remark}}</span>
+			</li>
+			<li>
+				剩余额度
+				<span>{{arr.remain_amount}}</span>
+			</li>
+			<li>
+				产品说明书,协议
+				<span><img src="../img/look-more.png" alt="" /></span>
+			</li>
+		</ul>
+	</li>
+</ul>
+<button class="buy_btn" ng-click="buy()">购买</button>

@@ -1,0 +1,84 @@
+
+#search{
+	/*width:100%;*/
+	padding:4px 10px;
+	line-height: 20px;
+	height:30px;
+	background: rgb(248,248,248);
+	border-bottom:1px solid #ccc;
+	position: relative;
+	z-index:-1;
+}
+#search img{
+	width:16px;
+}
+#search input{
+	border:1px solid #ccc;
+	width:180px;
+	height:24px;
+	position: absolute;
+	left:50px;
+	padding-left:4px;
+	border-radius:10px;
+}
+#search .search_btn{
+	width: 60px;
+	height:28px;
+	font-size:15px;
+	border:1px solid #ccc;
+	float: right;
+	background: rgb(248,248,248);
+	float: right;
+	color:#666;
+	border-radius: 5px;
+}
+/*内容*/
+#msg{
+	width:90%;
+	/*display: inline-block;*/
+	border-bottom:1px solid #ccc;
+	height: 80px;
+	line-height: 30px;
+	padding:10px;
+}
+
+#msg .left{
+	width:78px;
+	height:78px;
+	float: left;
+	margin-top:1%;
+	margin-right:8px;
+}
+#msg .context{
+	width:70%;
+	float: left;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+#msg .context p{
+	color:#666;
+	font-size:14px;
+}
+
+/*加载更多*/
+.more{
+	text-align: center;
+	font-size:14px;
+	color:#666;
+	padding:10px 0;
+}
+/*定位*/
+.localPosi{
+	width:90%;
+	
+	background: rgb(248,248,248);
+	padding:10px 3px;
+	color:#ccc;
+}
+.localPosi img{
+	float: right;
+	width:18px;
+	height:18px;
+}

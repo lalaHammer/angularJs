@@ -1,0 +1,39 @@
+.title{
+	padding:10px;
+	line-height: 20px;
+	width:90%;
+}
+.title span{
+	font-size: 14px;
+	color:#ccc;
+}
+
+.jjList{
+	padding:10px;
+	width:90%;
+}
+.jjList li{
+	padding:4px 6px;
+	border:1px solid #ccc;
+	height:30px;
+	line-height: 30px;
+	font-size: 14px;
+	color:#666;
+}
+.jjList li>span{
+	float: right;
+}
+.tableMsg{
+	width:96%;
+	text-align: center;
+	padding:0 10px;
+}
+.tableMsg td{
+	padding:10px 0;
+}
+.tableMsg td:nth-child(1){
+	/*border-right:1px solid #ccc;*/
+}
+.val{
+	color:rgb(255,122,88);
+}
